@@ -4,16 +4,14 @@ import java.util.*;
 public class Main {
 
 	public static void main (String[] args) throws IOException {
-		FileReader fr = new FileReader("/Users/dev/Desktop/dataPractice.dat");
-		System.out.println("表示するよ。");
-		int i = fr.read(); // int型に入れる
-		while(i != -1) {
-			char c = (char) i; // キャストする
-			System.out.print(c);
-			i = fr.read();
+		try (FileInputStream in = new FileInputStream("/Users/dev/Desktop/sample.png");FileOutputStream out = new FileOutputStream("/Users/dev/Desktop/sample2.png")) {
+			int data;
+			while ((data = in.read()) != -1) {
+				out.write((byte) data);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		System.out.println("最後やで。");
-		fr.close();
 	}
 }
 
